@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<div th:insert="~{fragments/head}"></div>
+
+<body>
+<div th:insert="~{fragments/navbar}"></div>
+
+<main id="main-content" class="league-page uk-background-muted uk-flex uk-flex-center uk-flex-middle">
+  <div class="uk-container uk-width-1-2" style="height: 100vh; padding-bottom: 9rem;"> 
+  
+  <div class="uk-flex uk-flex-center uk-margin uk-margin-xsmall-top uk-child-width-1-3">
+    <select id="leagues" name="leagues" class="uk-select uk-text-bold">
+        <option value="" disabled selected>Pick a league to view the latest rankings</option>
+        <option value="PL">Premier League</option>
+        <option value="BL1">Bundesliga</option>
+        <option value="PD">Primera Division</option>
+        <option value="DED">Eredivisie</option>
+        <option value="FL1">Ligue 1</option>
+        <option value="SA">Serie A</option>
+        <option value="PPL">Primeira Liga</option>
+        <option value="BSA">Campeonato Brasileiro Série A</option>
+    </select>
+  </div>
+     
+    <table class="uk-table uk-table-striped uk-margin-medium-top uk-margin-medium-bottom uk-text-bold">
+    <thead>
+        <tr>
+            <th class="uk-text-center">#</th>
+            <th style="padding-left: 18px !important;">Club</th>
+            <th style="padding-left: 18px !important;">Club Stats</th>
+            <th class="uk-text-center">Points</th>
+        </tr>
+    </thead>
+
+    <tbody th:each="team, iterStat : ${teams}">
+        <tr>
+            <td class="uk-text-center" th:text="${iterStat.index + 1}">1</td>
+            <td>
+                <img th:src="@{${team.crest}}" alt="Crest" style="height: 24px; vertical-align: middle; margin-right: 8px;" />
+                <span th:text="${team.name}">Team Name</span>
+            </td>
+            <td>
+                <span class="uk-margin-small-left" th:text="'MP: ' + ${team.playedGames} + ',&nbsp W: ' + ${team.won} + ',&nbsp D: ' + ${team.draw} + ',&nbsp L: ' + ${team.lost} + ',&nbsp GF: ' + ${team.goalsFor} + ',&nbsp GA: ' + ${team.goalsAgainst} + ',&nbsp GD: ' + (${team.goalsFor} - ${team.goalsAgainst})">Stats</span>
+            </td>
+            <td class="uk-text-center" th:text="${team.points}">0</td>
+        </tr>
+    </tbody>
+</table>
+    <p class="uk-text-bolder uk-text-center uk-margin-small-bottom" style="color: #B6D0E2; filter: brightness(120%);">Club Stats: Matches Played (MP), Won (W), Draw (D), Loss (L), Goals For (GF), Goals Against (GA), Goal Difference (GD)</p>
+  </div>
+</main>
+  
+<div th:insert="~{fragments/footer}"></div> 
+
+<script> 
+  let leagueString = ''; 
+
+  document.addEventListener('DOMContentLoaded', function () {
+    const selectElement = document.getElementById('leagues');
+
+    if (selectElement) {
+      selectElement.addEventListener('change', function () {
+        const selectedValue = this.value;
+        const selectedText = this.options[this.selectedIndex].text;
+
+        switch (selectedValue) {
+          case 'PL':
+            leagueCode = `${selectedValue}`;
+            break;
+          case 'BL1':
+            leagueCode = `${selectedValue}`;
+            break;
+          case 'PD':
+            leagueCode = `${selectedValue}`;
+            break;
+          case 'DED':
+            leagueCode = `${selectedValue}`;
+            break;
+          case 'FL1':
+            leagueCode = `${selectedValue}`;
+            break;
+          case 'SA':
+            leagueCode = `${selectedValue}`;
+            break;
+          case 'PPL':
+            leagueCode = `${selectedValue}`;
+            break;
+          case 'BSA':
+            leagueCode = `${selectedValue}`;
+            break;
+          default:
+            leagueString = 'Unknown league selected';
+        }  
+        window.location.href = `/league?league=${leagueCode}`; 
+      });
+    }
+  });
+</script>
+</body>
+</html>
