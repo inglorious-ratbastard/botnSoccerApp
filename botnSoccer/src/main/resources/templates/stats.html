@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<div th:insert="~{fragments/head}"></div>
+
+<style>
+  p {
+    color: black !important;
+  }
+  h3 {
+    font-size: 14px !important; 
+  }
+</style>
+
+<body>
+<div th:insert="~{fragments/navbar}"></div>
+
+<main id="main-content" class="league-page uk-background-muted uk-flex uk-flex-center uk-flex-middle">
+  <div class="uk-container uk-width-1-2" style="height: 100vh; padding-bottom: 9rem; background-color: white !important;"> 
+
+    <div class="uk-flex uk-flex-center uk-margin uk-margin-xsmall-top uk-child-width-1-3">
+      <select id="leagues" name="leagues" class="uk-select uk-text-bold">
+        <option value="" disabled selected>Choose a league to view its Top Scorers</option>
+        <option value="PL" th:selected="${leagueCode == 'PL'}">Premier League</option>
+        <option value="BL1" th:selected="${leagueCode == 'BL1'}">Bundesliga</option>
+        <option value="PD" th:selected="${leagueCode == 'PD'}">Primera Division</option>
+        <option value="DED" th:selected="${leagueCode == 'DED'}">Eredivisie</option>
+        <option value="FL1" th:selected="${leagueCode == 'FL1'}">Ligue 1</option>
+        <option value="SA" th:selected="${leagueCode == 'SA'}">Serie A</option>
+        <option value="PPL" th:selected="${leagueCode == 'PPL'}">Primeira Liga</option>
+        <option value="BSA" th:selected="${leagueCode == 'BSA'}">Campeonato Brasileiro Série A</option>
+      </select>
+    </div>
+
+    <h3 class="uk-text-center uk-text-default uk-text-bold uk-margin-remove-top" 
+        th:text="'Top Scorers - ' + ${leagueName}">
+    </h3>
+
+    <table class="uk-table uk-table-striped uk-margin-medium-top uk-margin-medium-bottom uk-text-bold">
+      <thead>
+        <tr>
+          <th class="uk-text-center">#</th>
+          <th class="uk-text-center">Player</th>
+          <th class="uk-text-center">Nationality</th>
+          <th class="uk-text-center">Club</th>
+          <th class="uk-text-center">Goals (G)</th>
+          <th class="uk-text-center">Assists (A)</th>
+          <th class="uk-text-center">Penalties (P)</th>
+        </tr>
+      </thead>
+
+      <tbody th:if="${players != null}" th:each="player, iterStat : ${players}">
+        <tr>
+          <td class="uk-text-center" th:text="${iterStat.index + 1}">1</td>
+
+          <td class="uk-text-center" th:text="${player['name']}">Player Name</td>
+
+          <td class="uk-text-center" th:text="${player['nationality']}">Country</td>
+
+          <td class="uk-text-center">
+            <img th:src="${player['crest']}" alt="Crest" style="height: 24px; vertical-align: middle; margin-right: 8px;" />
+            <span th:text="${player['team']}">Team</span>
+          </td>
+
+          <td class="uk-text-center" th:text="${player['goals']}">0</td>
+          <td class="uk-text-center" th:text="${player['assists']}">0</td>
+          <td class="uk-text-center" th:text="${player['penalties']}">0</td>
+        </tr>
+      </tbody>
+
+      <tbody th:if="${players == null}">
+        <tr>
+          <td colspan="7" class="uk-text-center">No data available</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p class="uk-text-bolder uk-text-center uk-margin-small-bottom" 
+       style="color: #B6D0E2; filter: brightness(120%);">
+       Player Stats: Goals (G), Assists (A), Penalties (P)
+    </p>
+
+  </div>
+</main>
+
+<div th:insert="~{fragments/footer}"></div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const selectElement = document.getElementById('leagues');
+
+    if (selectElement) {
+      selectElement.addEventListener('change', function () {
+        const leagueCode = this.value;
+        if (leagueCode) {
+          window.location.href = `/stats?league=${leagueCode}`;
+        }
+      });
+    }
+  });
+</script>
+
+</body>
+</html>

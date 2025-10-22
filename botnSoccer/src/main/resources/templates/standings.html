@@ -1,0 +1,537 @@
+	<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<div th:insert="~{fragments/head}"></div>
+
+<style> 
+#newsbox a {
+  position: relative;
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+#newsbox a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 0;
+  height: 1px;
+  background-color: currentColor;
+  transition: width 0.3s ease;
+}
+
+#newsbox a:hover::after {
+  width: 100%;
+} 
+</style>
+
+<style>
+.uk-grid-match a {
+  color: yellow !important; 
+}
+</style>
+
+<body>
+<div th:insert="~{fragments/navbar}"></div>
+
+<main id="main-content" class="standings-page uk-background-muted uk-flex uk-flex-center uk-flex-middle">
+  <div class="uk-container uk-text-center uk-width-1-2" uk-height-viewport="expand: true">
+    <h6 class="uk-margin-small-top uk-margin-medium-bottom uk-text-bold" style="color: black !important	;">Instant Access to Live Football Scores</h6>
+        
+   <div class="uk-flex uk-flex-center uk-margin uk-margin-small-top uk-child-width-1-1">
+	  <ul uk-accordion style="width: 70vw;">
+	  
+	    <li id="accordion-fifa" class="uk-margin-medium-bottom">
+	        <a class="uk-accordion-title" href>FIFA World Cup</a>
+	        <div class="uk-accordion-content">
+	            <h6 class="uk-margin-small-top uk-margin-medium-bottom">World Cup Standings For Year: <span th:text="${worldCupSeason}"></span></h6>
+	            <div class="uk-child-width-1-2@m uk-grid-small uk-grid-match" uk-grid>
+				    <div>
+				        <div class="uk-card uk-card-small uk-card-body uk-flex uk-flex-center uk-flex-column uk-text-center" >
+				            <h3 class="uk-card-title uk-text-small uk-text-bold" style="color: #FFD700;">Group A</h3>
+				            <div id="cardiv" th:if="${worldCupGroups['Group A']} != null">
+							    <ul class="uk-list uk-list-divider uk-align-center" style="padding: 0; list-style: none; margin: 0 auto;">
+							        <th:block th:each="team : ${worldCupGroups['Group A']}">
+							            <li class="uk-flex uk-flex-middle uk-flex-center" style="font-size: 12px;">
+							                <div style="width: 30px; display: flex; justify-content: center; align-items: center;">
+								               <img th:src="${team.crest}" alt="" style="height: 10px; width: auto;">
+							                </div> 
+							                <div style="margin-left: 10px;"> 
+							                    <span th:text="${team.name != null and team.name != 'null' ? team.name : 'Not Available'}"></span>
+							                    <span>-</span>
+							                    <strong th:text="'Points: ' + ${team.points}"></strong>
+							                </div>
+							            </li>
+							        </th:block>
+							    </ul>
+							</div>
+							<div th:if="${worldCupGroups['Group A']} == null">
+							    <p style="text-align: center;">Group A data not available</p>
+							</div>
+				        </div>	
+				    </div>
+				    <div>
+				        <div class="uk-card uk-card-small uk-card-body uk-flex uk-flex-center uk-flex-column uk-text-center">
+				            <h3 class="uk-card-title uk-text-small uk-text-bold">Group B</h3>
+				            <div id="cardiv" th:if="${worldCupGroups['Group B']} != null">
+							    <ul class="uk-list uk-list-divider uk-align-center" style="padding: 0; list-style: none; margin: 0 auto;">
+							        <th:block th:each="team : ${worldCupGroups['Group B']}">
+							            <li class="uk-flex uk-flex-middle uk-flex-center" style="font-size: 12px;">
+							                <div style="width: 30px; display: flex; justify-content: center; align-items: center;">
+							                    <img th:src="${team.crest}" alt="" style="height: 10px; width: auto;">
+							                </div> 
+							                <div style="margin-left: 10px;"> 
+							                    <span th:text="${team.name != null and team.name != 'null' ? team.name : 'Not Available'}"></span>
+							                    <span>-</span>
+							                    <strong th:text="'Points: ' + ${team.points}"></strong>
+							                </div>
+							            </li>
+							        </th:block>
+							    </ul>
+							</div>
+							<div th:if="${worldCupGroups['Group B']} == null">
+							    <p style="text-align: center;">Group B data not available</p>
+							</div>
+				        </div>
+				    </div>
+				    <div>
+				        <div class="uk-card uk-card-small uk-card-body uk-flex uk-flex-center uk-flex-column uk-text-center">
+				            <h3 class="uk-card-title uk-text-small uk-text-bold">Group C</h3>
+				            <div id="cardiv" th:if="${worldCupGroups['Group C']} != null">
+							    <ul class="uk-list uk-list-divider uk-align-center" style="padding: 0; list-style: none; margin: 0 auto;">
+							        <th:block th:each="team : ${worldCupGroups['Group C']}">
+							            <li class="uk-flex uk-flex-middle uk-flex-center" style="font-size: 12px;">
+							                <div style="width: 30px; display: flex; justify-content: center; align-items: center;">
+							                    <img th:src="${team.crest}" alt="" style="height: 10px; width: auto;">
+							                </div> 
+							                <div style="margin-left: 10px;"> 
+							                    <span th:text="${team.name != null and team.name != 'null' ? team.name : 'Not Available'}"></span>
+							                    <span>-</span>
+							                    <strong th:text="'Points: ' + ${team.points}"></strong>
+							                </div>
+							            </li>
+							        </th:block>
+							    </ul>
+							</div>
+							<div th:if="${worldCupGroups['Group C']} == null">
+							    <p style="text-align: center;">Group C data not available</p>
+							</div>
+				        </div>
+				    </div>
+				    <div>
+				        <div class="uk-card uk-card-small uk-card-body uk-flex uk-flex-center uk-flex-column uk-text-center">
+				            <h3 class="uk-card-title uk-text-small uk-text-bold">Group D</h3>
+				            <div id="cardiv" th:if="${worldCupGroups['Group D']} != null">
+							    <ul class="uk-list uk-list-divider uk-align-center" style="padding: 0; list-style: none; margin: 0 auto;">
+							        <th:block th:each="team : ${worldCupGroups['Group D']}">
+							            <li class="uk-flex uk-flex-middle uk-flex-center" style="font-size: 12px;">
+							                <div style="width: 30px; display: flex; justify-content: center; align-items: center;">
+							                    <img th:src="${team.crest}" alt="" style="height: 10px; width: auto;">
+							                </div> 
+							                <div style="margin-left: 10px;"> 
+							                    <span th:text="${team.name != null and team.name != 'null' ? team.name : 'Not Available'}"></span>
+							                    <span>-</span>
+							                    <strong th:text="'Points: ' + ${team.points}"></strong>
+							                </div>
+							            </li>
+							        </th:block>
+							    </ul>
+							</div>
+							<div th:if="${worldCupGroups['Group D']} == null">
+							    <p style="text-align: center;">Group D data not available</p>
+							</div>
+				        </div>
+				    </div>
+				</div>
+	            <div class="uk-child-width-1-2@m uk-grid-small uk-grid-match" uk-grid>
+				    <div>
+				        <div class="uk-card uk-card-small uk-card-body uk-flex uk-flex-center uk-flex-column uk-text-center">
+				            <h3 class="uk-card-title uk-text-small uk-text-bold">Group E</h3>
+				            <div id="cardiv" th:if="${worldCupGroups['Group E']} != null">
+							    <ul class="uk-list uk-list-divider uk-align-center" style="padding: 0; list-style: none; margin: 0 auto;">
+							        <th:block th:each="team : ${worldCupGroups['Group E']}">
+							            <li class="uk-flex uk-flex-middle uk-flex-center" style="font-size: 12px;">
+							                <div style="width: 30px; display: flex; justify-content: center; align-items: center;">
+							                    <img th:src="${team.crest}" alt="" style="height: 10px; width: auto;">
+							                </div> 
+							                <div style="margin-left: 10px;"> 
+							                    <span th:text="${team.name != null and team.name != 'null' ? team.name : 'Not Available'}"></span>
+							                    <span>-</span>
+							                    <strong th:text="'Points: ' + ${team.points}"></strong>
+							                </div>
+							            </li>
+							        </th:block>
+							    </ul>
+							</div>
+							<div th:if="${worldCupGroups['Group E']} == null">
+							    <p style="text-align: center;">Group E data not available</p>
+							</div>
+				        </div>
+				    </div>
+				    <div>
+				        <div class="uk-card uk-card-small uk-card-body uk-flex uk-flex-center uk-flex-column uk-text-center">
+				            <h3 class="uk-card-title uk-text-small uk-text-bold">Group F</h3>
+				            <div id="cardiv" th:if="${worldCupGroups['Group F']} != null">
+							    <ul class="uk-list uk-list-divider uk-align-center" style="padding: 0; list-style: none; margin: 0 auto;">
+							        <th:block th:each="team : ${worldCupGroups['Group F']}">
+							            <li class="uk-flex uk-flex-middle uk-flex-center" style="font-size: 12px;">
+							                <div style="width: 30px; display: flex; justify-content: center; align-items: center;">
+							                    <img th:src="${team.crest}" alt="" style="height: 10px; width: auto;">
+							                </div> 
+							                <div style="margin-left: 10px;"> 
+							                    <span th:text="${team.name != null and team.name != 'null' ? team.name : 'Not Available'}"></span>
+							                    <span>-</span>
+							                    <strong th:text="'Points: ' + ${team.points}"></strong>
+							                </div>
+							            </li>
+							        </th:block>
+							    </ul>
+							</div>
+							<div th:if="${worldCupGroups['Group F']} == null">
+							    <p style="text-align: center;">Group F data not available</p>
+							</div>
+				        </div>
+				    </div>
+				    <div>
+				        <div class="uk-card uk-card-small uk-card-body uk-flex uk-flex-center uk-flex-column uk-text-center">
+				            <h3 class="uk-card-title uk-text-small uk-text-bold">Group G</h3>
+				            <div id="cardiv" th:if="${worldCupGroups['Group G']} != null">
+							    <ul class="uk-list uk-list-divider uk-align-center" style="padding: 0; list-style: none; margin: 0 auto;">
+							        <th:block th:each="team : ${worldCupGroups['Group G']}">
+							            <li class="uk-flex uk-flex-middle uk-flex-center" style="font-size: 12px;">
+							                <div style="width: 30px; display: flex; justify-content: center; align-items: center;">
+							                    <img th:src="${team.crest}" alt="" style="height: 10px; width: auto;">
+							                </div> 
+							                <div style="margin-left: 10px;"> 
+							                    <span th:text="${team.name != null and team.name != 'null' ? team.name : 'Not Available'}"></span>
+							                    <span>-</span>
+							                    <strong th:text="'Points: ' + ${team.points}"></strong>
+							                </div>
+							            </li>
+							        </th:block>
+							    </ul>
+							</div>
+							<div th:if="${worldCupGroups['Group G']} == null">
+							    <p style="text-align: center;">Group G data not available</p>
+							</div>
+				        </div>
+				    </div>
+				    <div>
+				        <div class="uk-card uk-card-small uk-card-body uk-flex uk-flex-center uk-flex-column uk-text-center">
+				            <h3 class="uk-card-title uk-text-small uk-text-bold">Group H</h3>
+				            <div id="cardiv" th:if="${worldCupGroups['Group H']} != null">
+							    <ul class="uk-list uk-list-divider uk-align-center" style="padding: 0; list-style: none; margin: 0 auto;">
+							        <th:block th:each="team : ${worldCupGroups['Group H']}">
+							            <li class="uk-flex uk-flex-middle uk-flex-center" style="font-size: 12px;">
+							                <div style="width: 30px; display: flex; justify-content: center; align-items: center;">
+							                    <img th:src="${team.crest}" alt="" style="height: 10px; width: auto;">
+							                </div> 
+							                <div style="margin-left: 10px;"> 
+							                    <span th:text="${team.name != null and team.name != 'null' ? team.name : 'Not Available'}"></span>
+							                    <span>-</span>
+							                    <strong th:text="'Points: ' + ${team.points}"></strong>
+							                </div>
+							            </li>
+							        </th:block>
+							    </ul>
+							</div>
+							<div th:if="${worldCupGroups['Group H']} == null">
+							    <p style="text-align: center;">Group H data not available</p>
+							</div>
+				        </div>
+				    </div>
+				</div>
+	        </div>
+	    </li>
+	    
+	    <li id="accordion-ucl" class="uk-margin-medium-bottom">
+	        <a class="uk-accordion-title" href>EUFA Champions League</a>
+	        <div class="uk-accordion-content">
+	        
+	           <div class="uk-flex uk-flex-center uk-margin uk-margin-xsmall-top uk-child-width-1-3">
+			    <select id="uclstand" name="uclstand" class="uk-select uk-text-bold">
+			        <option value="" disabled selected>Please Select a Rankings List Choice</option>
+			        <option value="T18">View the Top 18th Ranked Teams</option>
+			        <option value="L18">View the Last 18th Ranked Teams</option>
+			    </select>
+			  </div>
+	        
+	           <table class="uk-table uk-table-striped uk-text-bold uk-margin-medium-top">
+			    <thead>
+			        <tr>
+			            <th class="uk-text-center">#</th>
+			            <th class="uk-text-center">Club</th>
+			            <th class="uk-text-center">Club Record</th>
+			            <th class="uk-text-center">Club Stats</th>
+			            <th class="uk-text-center">Points</th>
+			        </tr>
+			    </thead>
+			    <tbody>
+			        <tr><td>Table Data</td><td>Table Data</td><td>Table Data</td><td>Table Data</td><td>Table Data</td></tr>
+			        <tr><td>Table Data</td><td>Table Data</td><td>Table Data</td><td>Table Data</td><td>Table Data</td></tr>
+			        <tr><td>Table Data</td><td>Table Data</td><td>Table Data</td><td>Table Data</td><td>Table Data</td></tr>
+			        <tr><td>Table Data</td><td>Table Data</td><td>Table Data</td><td>Table Data</td><td>Table Data</td></tr>
+			        <tr><td>Table Data</td><td>Table Data</td><td>Table Data</td><td>Table Data</td><td>Table Data</td></tr>
+			        <tr><td>Table Data</td><td>Table Data</td><td>Table Data</td><td>Table Data</td><td>Table Data</td></tr>
+			        <tr><td>Table Data</td><td>Table Data</td><td>Table Data</td><td>Table Data</td><td>Table Data</td></tr>
+			        <tr><td>Table Data</td><td>Table Data</td><td>Table Data</td><td>Table Data</td><td>Table Data</td></tr>
+			        <tr><td>Table Data</td><td>Table Data</td><td>Table Data</td><td>Table Data</td><td>Table Data</td></tr>
+			        <tr><td>Table Data</td><td>Table Data</td><td>Table Data</td><td>Table Data</td><td>Table Data</td></tr>
+			        <tr><td>Table Data</td><td>Table Data</td><td>Table Data</td><td>Table Data</td><td>Table Data</td></tr>
+			        <tr><td>Table Data</td><td>Table Data</td><td>Table Data</td><td>Table Data</td><td>Table Data</td></tr>
+			        <tr><td>Table Data</td><td>Table Data</td><td>Table Data</td><td>Table Data</td><td>Table Data</td></tr>
+			        <tr><td>Table Data</td><td>Table Data</td><td>Table Data</td><td>Table Data</td><td>Table Data</td></tr>
+			        <tr><td>Table Data</td><td>Table Data</td><td>Table Data</td><td>Table Data</td><td>Table Data</td></tr>
+			        <tr><td>Table Data</td><td>Table Data</td><td>Table Data</td><td>Table Data</td><td>Table Data</td></tr>
+			        <tr><td>Table Data</td><td>Table Data</td><td>Table Data</td><td>Table Data</td><td>Table Data</td></tr>
+			        <tr><td>Table Data</td><td>Table Data</td><td>Table Data</td><td>Table Data</td><td>Table Data</td></tr>
+			    </tbody>
+			</table>
+	        </div>
+	    </li>
+	    
+	    <li id="accordion-euro" class="uk-margin-small-bottom">
+	        <a class="uk-accordion-title" href>European Championship</a>
+	        <div class="uk-accordion-content">
+	         <h6 class="uk-margin-small-top uk-margin-medium-bottom">Euro Standings For Year: <span th:text="${euroSeason}">1977</span></h6>  
+	            <div class="uk-child-width-1-2@m uk-grid-small uk-grid-match" uk-grid>
+				   <div>
+					  <div class="uk-card uk-card-small uk-card-body uk-flex uk-flex-center uk-flex-column uk-text-center">
+					    <h3 class="uk-card-title uk-text-small uk-text-bold" style="color: #FFD700;">Group A</h3>
+					
+					    <div id="cardiv" th:if="${euroGroups['Group A']} != null">
+					        <ul class="uk-list uk-list-divider uk-align-center" style="padding: 0; list-style: none; margin: 0 auto;">
+					            <li th:each="team : ${euroGroups['Group A']}" class="uk-flex uk-flex-middle uk-flex-center" style="font-size: 12px;">
+					                <div style="width: 30px; display: flex; justify-content: center; align-items: center;">
+					                    <img th:src="${team.crest}" alt="" style="height: 10px; width: auto;">
+					                </div> 
+					                <div style="margin-left: 10px;">
+					                    <span th:text="${team.name}"></span>
+					                    <span>-</span>
+					                    <strong th:text="'Points: ' + ${team.points}"></strong>
+					                </div>
+					            </li>
+					        </ul>
+					    </div> 
+					    <div th:if="${euroGroups['Group A']} == null">
+					        <p style="text-align: center;">Group A data not available</p>
+					    </div>
+					</div>  
+				  </div>    
+				  <div>
+					  <div class="uk-card uk-card-small uk-card-body uk-flex uk-flex-center uk-flex-column uk-text-center">
+					    <h3 class="uk-card-title uk-text-small uk-text-bold" style="color: #FFD700;">Group B</h3>
+					
+					    <div id="cardiv" th:if="${euroGroups['Group B']} != null">
+					        <ul class="uk-list uk-list-divider uk-align-center" style="padding: 0; list-style: none; margin: 0 auto;">
+					            <li th:each="team : ${euroGroups['Group B']}" class="uk-flex uk-flex-middle uk-flex-center" style="font-size: 12px;">
+					                <div style="width: 30px; display: flex; justify-content: center; align-items: center;">
+					                    <img th:src="${team.crest}" alt="" style="height: 10px; width: auto;">
+					                </div> 
+					                <div style="margin-left: 10px;">
+					                    <span th:text="${team.name}"></span>
+					                    <span>-</span>
+					                    <strong th:text="'Points: ' + ${team.points}"></strong>
+					                </div>
+					            </li>
+					        </ul>
+					    </div> 
+					    <div th:if="${euroGroups['Group B']} == null">
+					        <p style="text-align: center;">Group B data not available</p>
+					    </div>
+					</div>  
+				  </div> 
+				  <div>
+					  <div class="uk-card uk-card-small uk-card-body uk-flex uk-flex-center uk-flex-column uk-text-center">
+					    <h3 class="uk-card-title uk-text-small uk-text-bold" style="color: #FFD700;">Group C</h3>
+					
+					    <div id="cardiv" th:if="${euroGroups['Group C']} != null">
+					        <ul class="uk-list uk-list-divider uk-align-center" style="padding: 0; list-style: none; margin: 0 auto;">
+					            <li th:each="team : ${euroGroups['Group C']}" class="uk-flex uk-flex-middle uk-flex-center" style="font-size: 12px;">
+					                <div style="width: 30px; display: flex; justify-content: center; align-items: center;">
+					                    <img th:src="${team.crest}" alt="" style="height: 10px; width: auto;">
+					                </div> 
+					                <div style="margin-left: 10px;">
+					                    <span th:text="${team.name}"></span>
+					                    <span>-</span>
+					                    <strong th:text="'Points: ' + ${team.points}"></strong>
+					                </div>
+					            </li>
+					        </ul>
+					    </div> 
+					    <div th:if="${euroGroups['Group C']} == null">
+					        <p style="text-align: center;">Group C data not available</p>
+					    </div>
+					</div>  
+				  </div>  
+				  <div>
+					  <div class="uk-card uk-card-small uk-card-body uk-flex uk-flex-center uk-flex-column uk-text-center">
+					    <h3 class="uk-card-title uk-text-small uk-text-bold" style="color: #FFD700;">Group D</h3>
+					
+					    <div id="cardiv" th:if="${euroGroups['Group D']} != null">
+					        <ul class="uk-list uk-list-divider uk-align-center" style="padding: 0; list-style: none; margin: 0 auto;">
+					            <li th:each="team : ${euroGroups['Group D']}" class="uk-flex uk-flex-middle uk-flex-center" style="font-size: 12px;">
+					                <div style="width: 30px; display: flex; justify-content: center; align-items: center;">
+					                    <img th:src="${team.crest}" alt="" style="height: 10px; width: auto;">
+					                </div> 
+					                <div style="margin-left: 10px;">
+					                    <span th:text="${team.name}"></span>
+					                    <span>-</span>
+					                    <strong th:text="'Points: ' + ${team.points}"></strong>
+					                </div>
+					            </li>
+					        </ul>
+					    </div> 
+					    <div th:if="${euroGroups['Group D']} == null">
+					        <p style="text-align: center;">Group D data not available</p>
+					    </div>
+					</div>  
+				  </div>       
+				  <div>
+					  <div class="uk-card uk-card-small uk-card-body uk-flex uk-flex-center uk-flex-column uk-text-center">
+					    <h3 class="uk-card-title uk-text-small uk-text-bold" style="color: #FFD700;">Group E</h3>
+					
+					    <div id="cardiv" th:if="${euroGroups['Group E']} != null">
+					        <ul class="uk-list uk-list-divider uk-align-center" style="padding: 0; list-style: none; margin: 0 auto;">
+					            <li th:each="team : ${euroGroups['Group E']}" class="uk-flex uk-flex-middle uk-flex-center" style="font-size: 12px;">
+					                <div style="width: 30px; display: flex; justify-content: center; align-items: center;">
+					                    <img th:src="${team.crest}" alt="" style="height: 10px; width: auto;">
+					                </div> 
+					                <div style="margin-left: 10px;">
+					                    <span th:text="${team.name}"></span>
+					                    <span>-</span>
+					                    <strong th:text="'Points: ' + ${team.points}"></strong>
+					                </div>
+					            </li>
+					        </ul>
+					    </div> 
+					    <div th:if="${euroGroups['Group E']} == null">
+					        <p style="text-align: center;">Group E data not available</p>
+					    </div>
+					</div>  
+				  </div>    
+				  <div>
+					  <div class="uk-card uk-card-small uk-card-body uk-flex uk-flex-center uk-flex-column uk-text-center">
+					    <h3 class="uk-card-title uk-text-small uk-text-bold" style="color: #FFD700;">Group F</h3>
+					
+					    <div id="cardiv" th:if="${euroGroups['Group F']} != null">
+					        <ul class="uk-list uk-list-divider uk-align-center" style="padding: 0; list-style: none; margin: 0 auto;">
+					            <li th:each="team : ${euroGroups['Group F']}" class="uk-flex uk-flex-middle uk-flex-center" style="font-size: 12px;">
+					                <div style="width: 30px; display: flex; justify-content: center; align-items: center;">
+					                    <img th:src="${team.crest}" alt="" style="height: 10px; width: auto;">
+					                </div> 
+					                <div style="margin-left: 10px;">
+					                    <span th:text="${team.name}"></span>
+					                    <span>-</span>
+					                    <strong th:text="'Points: ' + ${team.points}"></strong>
+					                </div>
+					            </li>
+					        </ul>
+					    </div> 
+					    <div th:if="${euroGroups['Group F']} == null">
+					        <p style="text-align: center;">Group F data not available</p>
+					    </div>
+					</div>  
+				  </div>    	     
+			    </div>
+				    </li>
+		</ul>
+	   </div> 
+
+<div id="newsbox" class="uk-flex uk-flex-center uk-margin uk-margin-large-top uk-child-width-1-2 uk-height-xsmall uk-position-fixed" style="opacity: 0.6;"> 
+    <div class="uk-container uk-text-small">
+        <div class="uk-grid-match uk-child-width-1-3@m uk-grid-divider" uk-grid>
+            <div><h6 class="uk-margin-remove-bottom">World Cup</h6>
+            <p>Get more <strong>League Scores, Stats, & Standings</strong>: <br><a href="https://www.fifa.com/en/tournaments">FIFA World Cup</a></p>
+            </div>
+            <div><h6 class="uk-margin-remove-bottom">Champions League</h6>
+            <p>Get more <strong>League Scores, Stats, & Standings</strong>: <br><a href="https://www.uefa.com/uefachampionsleague/">EUFA Champions League</a></p>
+	        </div>
+            <div><h6 class="uk-margin-remove-bottom">European Cup</h6>
+            <p>Get more <strong>League Scores, Stats, & Standings</strong>: <br><a href="https://www.uefa.com/uefaeuropaleague/">EUFA Europa League</a></p>
+	        </div> 
+        </div> 
+    </div>
+</div> 
+
+  </div>	
+</main>
+  
+<div th:insert="~{fragments/footer}"></div> 
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const openParam = urlParams.get("open");
+    if (!openParam) return;
+
+    const mainContent = document.getElementById("main-content");
+    if (!mainContent) return;
+
+    const targetId = `accordion-${openParam}`;
+    const targetLi = mainContent.querySelector(`#${targetId}`);
+    if (!targetLi) return;
+
+    const title = targetLi.querySelector('.uk-accordion-title');
+
+    mainContent.querySelectorAll('[uk-accordion] > li.uk-open').forEach(openItem => {
+        if (openItem !== targetLi) {
+            openItem.classList.remove('uk-open');
+        }
+    });
+
+    if (!targetLi.classList.contains('uk-open')) {
+        title.click(); 
+    }
+
+    const navbarHeight = document.querySelector('nav')?.offsetHeight || 80;
+    const elementTop = targetLi.getBoundingClientRect().top + window.pageYOffset;
+    const scrollTo = elementTop - navbarHeight - 20; 
+
+    window.scrollTo({
+        top: scrollTo,
+        behavior: 'smooth'
+    });
+});
+
+document.addEventListener("DOMContentLoaded", function() {
+    const select = document.getElementById("uclstand");
+    const tbody = document.querySelector("table.uk-table tbody");
+
+    function loadUclStandings(filter) {
+        fetch(`/uclstandings?filter=${filter}`)
+            .then(response => response.json())
+            .then(data => {
+                tbody.innerHTML = ""; 
+                data.forEach(team => {
+                    const row = `
+                        <tr>
+                            <td class="uk-text-center">${team.position}</td>
+                            <td class="uk-text-center">
+                                <img src="${team.crest}" alt="${team.name}" width="24" height="24" style="vertical-align:middle; margin-right:6px;">
+                                ${team.name}
+                            </td>
+                            <td class="uk-text-center">W: ${team.won} | D: ${team.draw} | L: ${team.lost}</td>
+                            <td class="uk-text-center">GF: ${team.goalsFor} | GA: ${team.goalsAgainst} | GD: ${team.goalDifference}</td>
+                            <td class="uk-text-center">${team.points}</td>
+                        </tr>`;
+                    tbody.insertAdjacentHTML("beforeend", row);
+                });
+            })
+            .catch(err => console.error("Error fetching standings:", err));
+    }
+
+    loadUclStandings("T18");
+
+    select.addEventListener("change", function() {
+        if (this.value) {
+            loadUclStandings(this.value);
+        }
+    });
+}); 
+</script>
+
+</body>
+</html>

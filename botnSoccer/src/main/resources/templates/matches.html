@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<div th:insert="~{fragments/head}"></div>
+
+<style>
+   .uk-card-body {
+     background-color: #B6D0E2 !important; 
+     filter: brightness(90%);
+   }  
+   .match-info-text {
+     color: red !important; 
+   }
+   .uk-flex .uk-text-center {
+     color: red !important; 
+   }
+   .uk-badge {
+     color: white !important; 
+   } 
+</style>
+
+<body>
+<div th:insert="~{fragments/navbar}"></div>
+
+<main id="main-content" class="uk-flex uk-flex-center uk-flex-middle">
+  <div class="uk-container uk-text-center uk-width-1-2" style="height: 100vh; padding-bottom: 9rem;">
+    <h6 class="uk-margin-small-top uk-margin-medium-bottom uk-text-bold">
+      Instant Access to Live Football Scores
+    </h6>
+        
+	<div th:if="${matches != null and #lists.size(matches) > 0}">
+	  <div th:each="match : ${matches}" 
+	       class="uk-card uk-card-default uk-width-2-3@m uk-card-body uk-margin-auto uk-margin-small-bottom">
+	    <div class="uk-text-center uk-text-small uk-margin-remove uk-padding-remove">
+	      <span class="match-info-text" th:text="${match['competition']}">Match Info</span>
+	    </div>
+	
+	    <div class="uk-grid-small uk-child-width-1-2@s uk-flex-middle" uk-grid>
+	      <div class="uk-flex uk-flex-middle uk-flex-column">
+	        <img th:src="${match['homeCrest']}" alt="Home Team Crest" />
+	        <div class="uk-text-center uk-margin-small-top">
+	          <strong>Home Team:</strong><br>
+	          <span th:text="${match['homeTeam']}" class="uk-text-emphasis" style="color: black !important;">Home Team Name</span><br>
+	          <strong>Score:</strong>
+	          <span th:text="${match['homeScore']}" class="uk-text-bold" style="color: black !important;">Score</span>
+	        </div>
+	      </div>
+	
+	      <div class="uk-flex uk-flex-middle uk-flex-right uk-flex-column" 
+	           style="justify-content: flex-end; text-align: right;">
+	        <img th:src="${match['awayCrest']}" alt="Away Team Crest" />
+	        <div class="uk-text-center uk-margin-small-top">
+	          <strong>Away Team:</strong><br>
+	          <span th:text="${match['awayTeam']}" class="uk-text-emphasis" style="color: black !important;">Away Team Name</span><br>
+	          <strong>Score:</strong>
+	          <span th:text="${match['awayScore']}" class="uk-text-bold" style="color: black !important;">Score</span>
+	        </div>
+	      </div>
+	    </div>
+	
+	    <div class="uk-text-center uk-text-small uk-margin-remove uk-padding-remove">
+	      <span class="uk-badge match-info-text match-color" th:text="${match['status']}">Match Status</span>
+	    </div>
+	  </div>
+	</div>
+	
+	<div th:if="${matches == null or #lists.isEmpty(matches)}" 
+	     class="uk-card uk-card-default uk-card-body uk-width-2-3@m uk-margin-auto uk-margin-small-bottom uk-text-center">
+	  <p class="uk-text-lead uk-text-bold" style="color: #555;">⚽ No matches available at the moment.</p>
+	  <p class="uk-text-small" style="color: #777;">Please check back later for live updates.</p>
+	</div>
+    
+  </div>	
+</main>
+  
+<div th:insert="~{fragments/footer}"></div> 
+
+<script>
+  function refreshMainContent() {
+    fetch(window.location.href, { headers: { "X-Requested-With": "XMLHttpRequest" } })
+      .then(response => response.text())
+      .then(html => {
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(html, 'text/html');
+        const newMain = doc.querySelector('#main-content');
+        const currentMain = document.querySelector('#main-content');
+        if (newMain && currentMain) {
+          currentMain.innerHTML = newMain.innerHTML;
+        }
+      })
+      .catch(err => console.error('Error refreshing main content:', err));
+  } 
+</script>
+
+</body>
+</html>
