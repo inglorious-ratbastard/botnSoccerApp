@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+</head>
+
+<body>
+
+<nav class="uk-navbar-container">
+    <div class="uk-container custom-background">
+        <div uk-navbar>
+            <div class="uk-navbar-left">
+              <a href="/" class="uk-navbar-item uk-logo uk-margin-small-right">
+				<img th:src="@{/logo.png}" alt="" style="height: 40px;" />
+			  </a>
+			  <ul id="brand-logo" class="uk-navbar-nav uk-margin-small-right">
+                    <li class="uk-text-muted"><a href="">Back Of The Net</a></li>
+              </ul>
+                <ul class="uk-navbar-nav">
+                    <li class="uk-text-muted"><a href="/matches">Matches</a></li>
+                    <li class="uk-text-muted"><a href="/league">League</a></li>
+                    <li>
+                        <a href="/standings">Standings</a>
+                        <div class="uk-navbar-dropdown uk-background-primary">	
+                            <ul class="uk-nav uk-navbar-dropdown-nav">
+                                <li><a href="/standings?open=fifa" data-target="accordion-fifa">FIFA World Cup</a></li>
+                                <li><a href="/standings?open=ucl" data-target="accordion-ucl">UEFA Champions League</a></li>
+                                <li><a href="/standings?open=euro" data-target="accordion-euro">European Championship</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li><a href="/stats">Stats</a></li>
+                    <li><a href="/more">More</a></li>
+                </ul>
+
+            </div>
+
+        </div>
+    </div>
+</nav> 	
+
+</body>
+</html>

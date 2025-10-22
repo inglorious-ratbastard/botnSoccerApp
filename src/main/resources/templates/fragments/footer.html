@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<style>
+  .uk-modal-body{
+    background-color: #FAF9F6 !important; 
+    color: black !important; 
+  }
+  .uk-modal-title {
+    font-weight: bold !important;
+  }
+  .uk-button {
+    background-color: #6082B6 !important;
+  }
+  #modal-privacy, #modal-terms, #modal-contact {
+    font-weight: bolder !important;  
+  }
+  #modal-privacy a {
+    font-weight: bolder !important;
+  } 
+</style>
+</head>
+
+<body> 
+<footer class="uk-background-muted custom-background uk-text-small custom-footer">
+  <div class="uk-container uk-padding-small">
+    <div class="uk-flex uk-flex-center uk-flex-middle uk-flex-wrap uk-text-center">
+      <div class="uk-margin-small-right">
+        Powered By the <a href="https://www.football-data.org/" class="white-link">Football-Data</a> API
+      </div>
+      <div>
+        <ul class="uk-subnav uk-subnav-divider uk-flex uk-flex-center uk-margin-remove">
+          <li><a href="#modal-privacy" uk-toggle>Privacy</a></li>
+          <li><a href="#modal-terms" uk-toggle>Terms</a></li>
+          <li><a href="#modal-contact" uk-toggle>Contact</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<div id="modal-privacy"  style="font-weight: bolder !important;" uk-modal>
+  <div class="uk-modal-dialog uk-modal-body uk-text-center">
+    <h2 class="uk-modal-title uk-text-default">Privacy Policy</h2>
+    <p>
+      Your privacy is important to us. This website does not collect or store personal data directly. 
+      Any football data displayed is sourced from the <a href="https://www.football-data.org/">Football-Data.org</a> API. Please refer to their 
+      <a href="https://www.football-data.org/about">Privacy Policy</a> for API-related data handling.
+    </p>
+    <p class="uk-text-right">
+      <button class="uk-button uk-button-small uk-button-primary uk-modal-close" type="button">Close</button>
+    </p>
+  </div>
+</div>
+
+<div id="modal-terms" uk-modal>
+  <div class="uk-modal-dialog uk-modal-body uk-text-center">
+    <h2 class="uk-modal-title uk-text-default">Terms of Use</h2>
+    <p>
+      By using this site, you agree to use the provided football data for informational and 
+      non-commercial purposes only. We make no guarantees about data accuracy or availability. 
+      Use of this service is at your own risk.
+    </p>
+    <p class="uk-text-right">
+      <button class="uk-button uk-button-small uk-button-primary uk-modal-close" type="button">Close</button>
+    </p>
+  </div>
+</div>
+
+<div id="modal-contact" uk-modal>
+  <div class="uk-modal-dialog uk-modal-body uk-text-center">
+    <h2 class="uk-modal-title uk-text-default">Contact</h2>
+    <p>
+      For inquiries or feedback, please reach out and let us know what you think.
+    </p>
+    <form>
+	    <fieldset class="uk-fieldset">
+	      <legend class="uk-legend uk-text-small uk-text-bold">Please Provide Your Feedback</legend>
+	        <div class="uk-margin">
+	            <input class="uk-input" type="text" placeholder="Enter your Full Name" aria-label="Input">
+	        </div>
+	         <div class="uk-margin">
+	            <input class="uk-input" type="text" placeholder="Provide your E-mail Address" aria-label="Input">
+	        </div>
+	        <div class="uk-margin">
+	            <textarea class="uk-textarea" rows="4" placeholder="Tell us what you have to say.." aria-label="Textarea"></textarea>
+	        </div> 
+	    </fieldset>
+    </form>
+    <p class="uk-text-right">
+      <button class="uk-button uk-button-small uk-button-primary uk-modal-close" type="button">Close</button>
+    </p>
+  </div>
+</div>
+
+</body>
+</html> 		

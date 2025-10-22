@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<div th:insert="~{fragments/head}"></div>
+
+<style>
+  .uk-card {
+    position: relative;
+    overflow: hidden;
+    opacity: 0.9 !important;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+  }
+
+  .uk-card:hover {
+    transform: scale(1.05);
+    opacity: 1;
+  }
+
+  .uk-card-body {
+    background-color: #A7C7E7 !important; 
+    background-image: url("[[@{/images/soccer-bg.jpg}]]");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    position: relative;
+  }
+
+  #more-grid a {
+    color: #0047AB !important;
+    font-weight: bolder !important;
+  }
+
+  .soccer-ball {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    background-image: url('https://upload.wikimedia.org/wikipedia/commons/d/d3/Soccerball.svg');
+    background-size: cover;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    transition: transform 0.2s ease-in-out;
+    pointer-events: none;
+  }
+
+  .uk-card:hover .soccer-ball {
+    transform: translate(-50%, -50%) scale(1);
+    animation: moveBall 2.5s ease-in-out infinite;
+  }
+
+  @keyframes moveBall {
+    0% {
+      top: 10%;
+      left: 10%;
+      transform: translate(-50%, -50%) rotate(0deg);
+    }
+    25% {
+      top: 80%;
+      left: 20%;
+      transform: translate(-50%, -50%) rotate(90deg);
+    }
+    50% {
+      top: 70%;
+      left: 80%;
+      transform: translate(-50%, -50%) rotate(180deg);
+    }
+    75% {
+      top: 20%;
+      left: 70%;
+      transform: translate(-50%, -50%) rotate(270deg);
+    }
+    100% {
+      top: 10%;
+      left: 10%;
+      transform: translate(-50%, -50%) rotate(360deg);
+    }
+  }
+</style>
+	
+<body>
+<div th:insert="~{fragments/navbar}"></div>
+
+<main id="main-content" class="uk-flex uk-flex-center uk-flex-middle">
+  <div class="uk-container uk-text-center uk-width-1-2" style="height: 100vh; padding-bottom: 9rem;">
+    <h6 class="uk-margin-small-top uk-margin-medium-bottom uk-text-bold" style="color: black !important;">Get More Quick Click Soccer Stats and Info</h6>
+        
+ <div id="more-grid" class="uk-grid-medium uk-child-width-expand@s uk-text-center" uk-grid>
+    <div>
+        <div class="uk-card uk-card-default uk-card-body uk-card-hover">
+        <div class="soccer-ball"></div>
+        <a href="https://www.fifa.com/en/" class="uk-text-bold uk-text-emphasis">FIFA World Cup</a>
+        </div> 
+    </div>
+    <div>
+        <div class="uk-card uk-card-default uk-card-body uk-card-hover">
+        <div class="soccer-ball"></div>
+        <a href="https://www.uefa.com/uefaeuropaleague/" class="uk-text-bold uk-text-emphasis">EUFA Europa League</a>
+        </div>
+    </div>
+    <div>
+        <div class="uk-card uk-card-default uk-card-body uk-card-hover">
+        <div class="soccer-ball"></div>
+        <a href="https://www.uefa.com/uefachampionsleague/" class="uk-text-bold uk-text-emphasis">EUFA Champions League</a>
+        </div>
+    </div>
+</div>
+
+<div id="more-grid" class="uk-grid-medium uk-child-width-expand@s uk-text-center" uk-grid>
+    <div>
+        <div class="uk-card uk-card-default uk-card-body uk-card-hover">
+        <div class="soccer-ball"></div>
+        <a href="https://www.premierleague.com/en/" class="uk-text-bold uk-text-emphasis">Premier League</a>
+        </div>
+    </div>
+    <div>
+        <div class="uk-card uk-card-default uk-card-body uk-card-hover">
+        <div class="soccer-ball"></div>
+        <a href="https://www.bundesliga.com/en/bundesliga" class="uk-text-bold uk-text-emphasis">Bundesliga</a>
+        </div>
+    </div>
+    <div>
+        <div class="uk-card uk-card-default uk-card-body uk-card-hover">
+        <div class="soccer-ball"></div>
+        <a href="https://www.laliga.com/en-GB" class="uk-text-bold uk-text-emphasis">LaLiga	</a>
+        </div>
+    </div>
+</div>
+
+<div id="more-grid" class="uk-grid-medium uk-child-width-expand@s uk-text-center" uk-grid>
+    <div>
+        <div class="uk-card uk-card-default uk-card-body uk-card-hover">
+        <div class="soccer-ball"></div>
+        <a href="https://ligue1.com/en" class="uk-text-bold uk-text-emphasis">Ligue 1</a>
+        </div>
+    </div>
+    <div>
+        <div class="uk-card uk-card-default uk-card-body uk-card-hover">
+        <div class="soccer-ball"></div>
+        <a href="https://www.legaseriea.it/en" class="uk-text-bold uk-text-emphasis">Serie A</a>
+        </div>
+    </div>
+    <div>
+        <div class="uk-card uk-card-default uk-card-body uk-card-hover">
+        <div class="soccer-ball"></div>
+        <a href="https://eredivisie.eu/competition/" class="uk-text-bold uk-text-emphasis">Eredivisie</a>
+        </div>
+    </div>
+</div>
+
+<div id="more-grid" class="uk-grid-medium uk-child-width-expand@s uk-text-center uk-margin-medium-bottom" uk-grid>
+    <div>
+        <div class="uk-card uk-card-default uk-card-body uk-card-hover">
+        <div class="soccer-ball"></div>
+        <a href="https://www.ligaportugal.pt/" class="uk-text-bold uk-text-emphasis">Primeira Liga</a>
+        </div>
+    </div>
+    <div>
+        <div class="uk-card uk-card-default uk-card-body uk-card-hover">
+        <div class="soccer-ball"></div>
+        <a href="https://ge.globo.com/futebol/brasileirao-serie-a/" class="uk-text-bold uk-text-emphasis">Campeonato Brasileiro Série A</a>
+        </div>
+    </div>
+    <div>
+        <div class="uk-card uk-card-default uk-card-body uk-card-hover">
+        <div class="soccer-ball"></div>
+        <a href="https://www.football-data.org/" class="uk-text-bold uk-text-emphasis">Football-Data.org</a>
+        </div>
+    </div>
+</div>
+        
+  </div>	
+</main>
+  
+<div th:insert="~{fragments/footer}"></div> 
+
+<script> 
+    document.querySelectorAll('.uk-card').forEach(card => {
+      card.addEventListener('mouseenter', () => {
+        const ball = card.querySelector('.soccer-ball');
+        if (ball) {
+          const randomDelay = Math.random() * 1; // 0–1s random start
+          ball.style.animationDelay = `${randomDelay}s`;
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>
