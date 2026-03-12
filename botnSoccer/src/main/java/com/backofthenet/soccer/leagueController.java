@@ -1,28 +1,3 @@
-/* package com.backofthenet.soccer;
-
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-
-import java.util.Map;
-
-@Controller
-public class leagueController {
-
-    private final DataCacheService dataService;
-
-    public leagueController(DataCacheService dataService) {
-        this.dataService = dataService;
-    }
-
-    @GetMapping("/league")
-    public String showLeagues(Model model) {
-        Map<String, Object> cache = dataService.getAllData();
-        model.addAttribute("leagues", cache.get("leagues"));
-        return "league"; 
-    }
-} */ 
-
 package com.backofthenet.soccer;
 
 import java.io.BufferedReader;

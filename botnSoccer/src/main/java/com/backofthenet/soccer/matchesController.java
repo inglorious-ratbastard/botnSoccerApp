@@ -1,28 +1,3 @@
-/* package com.backofthenet.soccer;
-
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-
-import java.util.Map;
-
-@Controller
-public class matchesController {
-
-    private final DataCacheService dataService;
-
-    public matchesController(DataCacheService dataService) {
-        this.dataService = dataService;
-    }
-
-    @GetMapping("/matches")
-    public String showMatches(Model model) {
-        Map<String, Object> cache = dataService.getAllData();
-        model.addAttribute("matches", cache.get("matches"));
-        return "matches"; 
-    }
-} */
-
 package com.backofthenet.soccer;
 
 import org.json.JSONArray;

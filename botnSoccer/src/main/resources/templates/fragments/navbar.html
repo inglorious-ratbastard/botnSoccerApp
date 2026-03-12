@@ -39,5 +39,33 @@
     </div>
 </nav> 	
 
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    const params = new URLSearchParams(window.location.search);
+    const open = params.get("open");
+
+    if (!open) return;
+
+    const map = {
+        fifa: "accordion-fifa",
+        ucl: "accordion-ucl",
+        euro: "accordion-euro"
+    };
+
+    const targetId = map[open];
+
+    if (!targetId) return;
+
+    const target = document.getElementById(targetId);
+
+    if (target) {
+        const accordion = UIkit.accordion(target.closest("[uk-accordion]"));
+        const index = [...target.parentNode.children].indexOf(target);
+        accordion.toggle(index, true);
+    }
+
+});
+</script>
 </body>
 </html>

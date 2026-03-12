@@ -1,4 +1,4 @@
-	<!DOCTYPE html>
+<!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 
 <div th:insert="~{fragments/head}"></div>
@@ -24,7 +24,16 @@
 
 #newsbox a:hover::after {
   width: 100%;
-} 
+}  
+
+#main-content{
+    opacity:0;
+    transition:opacity .25s ease;
+}
+
+body.loaded #main-content{
+    opacity:1;
+}
 </style>
 
 <style>
@@ -56,7 +65,7 @@
 							        <th:block th:each="team : ${worldCupGroups['Group A']}">
 							            <li class="uk-flex uk-flex-middle uk-flex-center" style="font-size: 12px;">
 							                <div style="width: 30px; display: flex; justify-content: center; align-items: center;">
-								               <img th:src="${team.crest}" alt="" style="height: 10px; width: auto;">
+								               <img th:src="${team.crest}" alt="" style="height: 10px; width:16px;">
 							                </div> 
 							                <div style="margin-left: 10px;"> 
 							                    <span th:text="${team.name != null and team.name != 'null' ? team.name : 'Not Available'}"></span>
@@ -80,7 +89,7 @@
 							        <th:block th:each="team : ${worldCupGroups['Group B']}">
 							            <li class="uk-flex uk-flex-middle uk-flex-center" style="font-size: 12px;">
 							                <div style="width: 30px; display: flex; justify-content: center; align-items: center;">
-							                    <img th:src="${team.crest}" alt="" style="height: 10px; width: auto;">
+							                    <img th:src="${team.crest}" alt="" style="height: 10px; width:16px;">
 							                </div> 
 							                <div style="margin-left: 10px;"> 
 							                    <span th:text="${team.name != null and team.name != 'null' ? team.name : 'Not Available'}"></span>
@@ -104,7 +113,7 @@
 							        <th:block th:each="team : ${worldCupGroups['Group C']}">
 							            <li class="uk-flex uk-flex-middle uk-flex-center" style="font-size: 12px;">
 							                <div style="width: 30px; display: flex; justify-content: center; align-items: center;">
-							                    <img th:src="${team.crest}" alt="" style="height: 10px; width: auto;">
+							                    <img th:src="${team.crest}" alt="" style="height: 10px; width:16px;">
 							                </div> 
 							                <div style="margin-left: 10px;"> 
 							                    <span th:text="${team.name != null and team.name != 'null' ? team.name : 'Not Available'}"></span>
@@ -128,7 +137,7 @@
 							        <th:block th:each="team : ${worldCupGroups['Group D']}">
 							            <li class="uk-flex uk-flex-middle uk-flex-center" style="font-size: 12px;">
 							                <div style="width: 30px; display: flex; justify-content: center; align-items: center;">
-							                    <img th:src="${team.crest}" alt="" style="height: 10px; width: auto;">
+							                    <img th:src="${team.crest}" alt="" style="height: 10px; width:16px;">
 							                </div> 
 							                <div style="margin-left: 10px;"> 
 							                    <span th:text="${team.name != null and team.name != 'null' ? team.name : 'Not Available'}"></span>
@@ -154,7 +163,7 @@
 							        <th:block th:each="team : ${worldCupGroups['Group E']}">
 							            <li class="uk-flex uk-flex-middle uk-flex-center" style="font-size: 12px;">
 							                <div style="width: 30px; display: flex; justify-content: center; align-items: center;">
-							                    <img th:src="${team.crest}" alt="" style="height: 10px; width: auto;">
+							                    <img th:src="${team.crest}" alt="" style="height: 10px; width:16px;">
 							                </div> 
 							                <div style="margin-left: 10px;"> 
 							                    <span th:text="${team.name != null and team.name != 'null' ? team.name : 'Not Available'}"></span>
@@ -178,7 +187,7 @@
 							        <th:block th:each="team : ${worldCupGroups['Group F']}">
 							            <li class="uk-flex uk-flex-middle uk-flex-center" style="font-size: 12px;">
 							                <div style="width: 30px; display: flex; justify-content: center; align-items: center;">
-							                    <img th:src="${team.crest}" alt="" style="height: 10px; width: auto;">
+							                    <img th:src="${team.crest}" alt="" style="height: 10px; width:16px;">
 							                </div> 
 							                <div style="margin-left: 10px;"> 
 							                    <span th:text="${team.name != null and team.name != 'null' ? team.name : 'Not Available'}"></span>
@@ -202,7 +211,7 @@
 							        <th:block th:each="team : ${worldCupGroups['Group G']}">
 							            <li class="uk-flex uk-flex-middle uk-flex-center" style="font-size: 12px;">
 							                <div style="width: 30px; display: flex; justify-content: center; align-items: center;">
-							                    <img th:src="${team.crest}" alt="" style="height: 10px; width: auto;">
+							                    <img th:src="${team.crest}" alt="" style="height: 10px; width:16px;">
 							                </div> 
 							                <div style="margin-left: 10px;"> 
 							                    <span th:text="${team.name != null and team.name != 'null' ? team.name : 'Not Available'}"></span>
@@ -226,7 +235,7 @@
 							        <th:block th:each="team : ${worldCupGroups['Group H']}">
 							            <li class="uk-flex uk-flex-middle uk-flex-center" style="font-size: 12px;">
 							                <div style="width: 30px; display: flex; justify-content: center; align-items: center;">
-							                    <img th:src="${team.crest}" alt="" style="height: 10px; width: auto;">
+							                    <img th:src="${team.crest}" alt="" style="height: 10px; width:16px;">
 							                </div> 
 							                <div style="margin-left: 10px;"> 
 							                    <span th:text="${team.name != null and team.name != 'null' ? team.name : 'Not Available'}"></span>
@@ -253,8 +262,8 @@
 	           <div class="uk-flex uk-flex-center uk-margin uk-margin-xsmall-top uk-child-width-1-3">
 			    <select id="uclstand" name="uclstand" class="uk-select uk-text-bold">
 			        <option value="" disabled selected>Please Select a Rankings List Choice</option>
-			        <option value="T18">View the Top 18th Ranked Teams</option>
-			        <option value="L18">View the Last 18th Ranked Teams</option>
+			        <option value="T18" th:selected="${leagueCode == 'T18'}">View the Top 18th Ranked Teams</option>
+			        <option value="L18" th:selected="${leagueCode == 'L18'}">View the Last 18th Ranked Teams</option>
 			    </select>
 			  </div>
 	        
@@ -305,7 +314,7 @@
 					        <ul class="uk-list uk-list-divider uk-align-center" style="padding: 0; list-style: none; margin: 0 auto;">
 					            <li th:each="team : ${euroGroups['Group A']}" class="uk-flex uk-flex-middle uk-flex-center" style="font-size: 12px;">
 					                <div style="width: 30px; display: flex; justify-content: center; align-items: center;">
-					                    <img th:src="${team.crest}" alt="" style="height: 10px; width: auto;">
+					                    <img th:src="${team.crest}" alt="" style="height: 10px; width:16px;">
 					                </div> 
 					                <div style="margin-left: 10px;">
 					                    <span th:text="${team.name}"></span>
@@ -328,7 +337,7 @@
 					        <ul class="uk-list uk-list-divider uk-align-center" style="padding: 0; list-style: none; margin: 0 auto;">
 					            <li th:each="team : ${euroGroups['Group B']}" class="uk-flex uk-flex-middle uk-flex-center" style="font-size: 12px;">
 					                <div style="width: 30px; display: flex; justify-content: center; align-items: center;">
-					                    <img th:src="${team.crest}" alt="" style="height: 10px; width: auto;">
+					                    <img th:src="${team.crest}" alt="" style="height: 10px; width:16px;">
 					                </div> 
 					                <div style="margin-left: 10px;">
 					                    <span th:text="${team.name}"></span>
@@ -351,7 +360,7 @@
 					        <ul class="uk-list uk-list-divider uk-align-center" style="padding: 0; list-style: none; margin: 0 auto;">
 					            <li th:each="team : ${euroGroups['Group C']}" class="uk-flex uk-flex-middle uk-flex-center" style="font-size: 12px;">
 					                <div style="width: 30px; display: flex; justify-content: center; align-items: center;">
-					                    <img th:src="${team.crest}" alt="" style="height: 10px; width: auto;">
+					                    <img th:src="${team.crest}" alt="" style="height: 10px; width:16px;">
 					                </div> 
 					                <div style="margin-left: 10px;">
 					                    <span th:text="${team.name}"></span>
@@ -374,7 +383,7 @@
 					        <ul class="uk-list uk-list-divider uk-align-center" style="padding: 0; list-style: none; margin: 0 auto;">
 					            <li th:each="team : ${euroGroups['Group D']}" class="uk-flex uk-flex-middle uk-flex-center" style="font-size: 12px;">
 					                <div style="width: 30px; display: flex; justify-content: center; align-items: center;">
-					                    <img th:src="${team.crest}" alt="" style="height: 10px; width: auto;">
+					                    <img th:src="${team.crest}" alt="" style="height: 10px; width:16px;">
 					                </div> 
 					                <div style="margin-left: 10px;">
 					                    <span th:text="${team.name}"></span>
@@ -397,7 +406,7 @@
 					        <ul class="uk-list uk-list-divider uk-align-center" style="padding: 0; list-style: none; margin: 0 auto;">
 					            <li th:each="team : ${euroGroups['Group E']}" class="uk-flex uk-flex-middle uk-flex-center" style="font-size: 12px;">
 					                <div style="width: 30px; display: flex; justify-content: center; align-items: center;">
-					                    <img th:src="${team.crest}" alt="" style="height: 10px; width: auto;">
+					                    <img th:src="${team.crest}" alt="" style="height: 10px; width:16px;">
 					                </div> 
 					                <div style="margin-left: 10px;">
 					                    <span th:text="${team.name}"></span>
@@ -420,7 +429,7 @@
 					        <ul class="uk-list uk-list-divider uk-align-center" style="padding: 0; list-style: none; margin: 0 auto;">
 					            <li th:each="team : ${euroGroups['Group F']}" class="uk-flex uk-flex-middle uk-flex-center" style="font-size: 12px;">
 					                <div style="width: 30px; display: flex; justify-content: center; align-items: center;">
-					                    <img th:src="${team.crest}" alt="" style="height: 10px; width: auto;">
+					                    <img th:src="${team.crest}" alt="" style="height: 10px; width:16px;">
 					                </div> 
 					                <div style="margin-left: 10px;">
 					                    <span th:text="${team.name}"></span>
@@ -531,6 +540,25 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     });
 }); 
+
+document.addEventListener("DOMContentLoaded", function(){
+    document.body.classList.add("loaded");
+});
+
+function refreshMainContent() {
+    fetch(window.location.href, { headers: { "X-Requested-With": "XMLHttpRequest" } })
+      .then(response => response.text())
+      .then(html => {
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(html, 'text/html');
+        const newMain = doc.querySelector('#main-content');
+        const currentMain = document.querySelector('#main-content');
+        if (newMain && currentMain) {
+          currentMain.innerHTML = newMain.innerHTML;
+        }
+      })
+      .catch(err => console.error('Error refreshing main content:', err));
+  } 
 </script>
 
 </body>

@@ -84,9 +84,6 @@
 		        </div>
 		      </div> 
 		    </div> 
-		    <!-- div class="no-match-card" th:if="${randomMatch == null or randomMatch['homeName'] == null}">
-		      <p class="uk-text-center">No match data available.</p>
-		    </div> -->
 		    <div th:if="${randomMatch == null or randomMatch['homeName'] == null}"
 			     class="uk-card uk-card-body no-match-card uk-text-center uk-flex uk-flex-middle uk-flex-center">
 			  <p class="uk-text-lead no-match-text uk-margin-remove">⚽ No match data available.</p>
@@ -126,9 +123,6 @@
 		        </div>
 		      </div>
             </div>
-		    <!-- <div th:if="${randomPLMatch == null or randomPLMatch['homeName'] == null}">
-		      <p class="uk-text-center">No match data available.</p>
-		    </div> -->
 		    <div th:if="${randomMatch == null or randomMatch['homeName'] == null}"
 			     class="uk-card uk-card-body no-match-card uk-text-center uk-flex uk-flex-middle uk-flex-center">
 			  <p class="uk-text-lead no-match-text uk-margin-remove">⚽ No match data available.</p>
@@ -159,6 +153,17 @@
       })
       .catch(err => console.error('Error refreshing main content:', err));
   } 
+  
+  <!-- const eventSource = new EventSource("/cache/updates");
+
+  eventSource.addEventListener("cacheRefresh", () => {
+    console.log('🔄 Cache refresh detected, updating main content...');
+    refreshMainContent();
+  });
+
+  eventSource.onerror = (err) => {
+    console.error('SSE connection error:', err);
+  }; --> 
 </script>
 
 </body>

@@ -29,7 +29,7 @@
         <option value="SA" th:selected="${leagueCode == 'SA'}">Serie A</option>
         <option value="PPL" th:selected="${leagueCode == 'PPL'}">Primeira Liga</option>
         <option value="BSA" th:selected="${leagueCode == 'BSA'}">Campeonato Brasileiro Série A</option>
-      </select>
+      </select>	
     </div>
 
     <h3 class="uk-text-center uk-text-default uk-text-bold uk-margin-remove-top" 
@@ -98,6 +98,21 @@
       });
     }
   });
+  
+  function refreshMainContent() {
+	    fetch(window.location.href, { headers: { "X-Requested-With": "XMLHttpRequest" } })
+	      .then(response => response.text())
+	      .then(html => {
+	        const parser = new DOMParser();
+	        const doc = parser.parseFromString(html, 'text/html');
+	        const newMain = doc.querySelector('#main-content');
+	        const currentMain = document.querySelector('#main-content');
+	        if (newMain && currentMain) {
+	          currentMain.innerHTML = newMain.innerHTML;
+	        }
+	      })
+	      .catch(err => console.error('Error refreshing main content:', err));
+	  } 
 </script>
 
 </body>
