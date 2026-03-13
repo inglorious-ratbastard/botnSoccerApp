@@ -1,20 +1,23 @@
-# Use official Java 17 image
+# Dockerfile for botnSoccerApp (Spring Boot)
+
+# 1️⃣ Base image: Java 17 JDK
 FROM eclipse-temurin:17-jdk-alpine
 
-# Set working directory
+# 2️⃣ Set working directory
 WORKDIR /app
 
-# Copy pom.xml first to cache dependencies
-COPY pom.xml .
+# 3️⃣ Copy the Maven project
+# Adjust the folder name if your Maven module is inside a subfolder
+COPY botnSoccerApp/pom.xml ./pom.xml
+COPY botnSoccerApp/src ./src
 
-# Copy source code
-COPY src ./src
-
-# Build the project
+# 4️⃣ Build the project
+# Try Maven wrapper first, fallback to system Maven
 RUN ./mvnw clean package -DskipTests || mvn clean package -DskipTests
 
-# Expose port
+# 5️⃣ Expose the dynamic port
 EXPOSE 8080
 
-# Run the Spring Boot app
-CMD ["java", "-jar", "target/botnSoccerApp-0.0.1-SNAPSHOT.jar"]
+# 6️⃣ Run the Spring Boot jar
+# Auto-detect the jar inside target/
+CMD java -jar $(ls target/*.jar | head -n 1)
