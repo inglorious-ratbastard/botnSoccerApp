@@ -1,18 +1,18 @@
-# Start with Java 17 JDK
-FROM eclipse-temurin:17-jdk-alpine
+# Use official Maven + JDK image
+FROM maven:3.9.3-eclipse-temurin-17-alpine
 
+# Set working directory
 WORKDIR /app
 
-# 1️⃣ Copy project files from correct subfolder
+# Copy your project files
 COPY botnSoccer/pom.xml ./pom.xml
 COPY botnSoccer/src ./src
 
-# 2️⃣ Build the project
-# Try the Maven wrapper if present, or fallback to system mvn
-RUN ./mvnw clean package -DskipTests || mvn clean package -DskipTests
+# Build the Spring Boot project (skip tests for speed)
+RUN mvn clean package -DskipTests
 
-# 3️⃣ Expose default Spring Boot port
+# Expose the port
 EXPOSE 8080
 
-# 4️⃣ Run the generated jar (auto‑detect name)
+# Run the Spring Boot jar (auto-detect)
 CMD ["sh", "-c", "java -jar target/*.jar"]
