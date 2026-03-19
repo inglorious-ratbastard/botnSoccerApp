@@ -18,6 +18,11 @@ public class DataCacheService {
     @Value("${football.api.token}")
     private String apiToken;
 
+    @PostConstruct
+    public void init() {
+        System.out.println("TOKEN: " + apiToken);
+    }
+
     @Autowired
     private RefreshController refreshController;
 
