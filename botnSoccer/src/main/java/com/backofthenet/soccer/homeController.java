@@ -49,7 +49,7 @@ public class homeController {
                 URL url = new URL(apiUrl);
                 HttpURLConnection connection = (HttpURLConnection) url.openConnection();
                 connection.setRequestMethod("GET");
-                connection.setRequestProperty("X-Auth-Token", System.getenv("FOOTBALL_TOKEN"));
+                connection.setRequestProperty("X-Auth-Token", System.getenv("FOOTBALL_API_TOKEN"));
 
                 int responseCode = connection.getResponseCode();
 
