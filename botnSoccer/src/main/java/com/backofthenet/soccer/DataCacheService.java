@@ -89,7 +89,8 @@ public class DataCacheService {
                 leagueData.put("teams", extractTeams(teams));
                 leagues.add(leagueData);
             } catch (Exception e) {
-                System.out.println("League fetch error for " + code + ": " + e.getMessage());
+                System.out.println("Matches fetch error");
+                e.printStackTrace(); 
             }
         }
         return leagues;
@@ -139,7 +140,8 @@ public class DataCacheService {
                 matches.add(matchInfo);
             }
         } catch (Exception e) {
-            System.out.println("Matches fetch error: " + e.getMessage());
+            System.out.println("Matches fetch error");
+            e.printStackTrace(); 
         }
         return matches;
     }
@@ -177,7 +179,8 @@ public class DataCacheService {
                 standings.put(group.optString("group", "Group A"), groupTeams);
             }
         } catch (Exception e) {
-            System.out.println("Standings fetch error: " + e.getMessage());
+            System.out.println("Matches fetch error");
+            e.printStackTrace(); 
         }
         return standings;
     }
@@ -211,7 +214,8 @@ public class DataCacheService {
                 scorers.add(info);
             }
         } catch (Exception e) {
-            System.out.println("Scorers fetch error: " + e.getMessage());
+            System.out.println("Matches fetch error");
+            e.printStackTrace(); 
         }
         return scorers;
     }
@@ -244,7 +248,21 @@ public class DataCacheService {
                 System.out.println("⏳ Rate limit hit. Waiting " + (waitTime / 1000) + "s...");
                 Thread.sleep(waitTime);
             } else {
-                throw new RuntimeException("Server returned HTTP " + responseCode + " for URL: " + apiUrl);
+            	BufferedReader errorReader =
+            	        new BufferedReader(new InputStreamReader(con.getErrorStream()));
+
+            	StringBuilder error = new StringBuilder();
+            	String line;
+
+            	while ((line = errorReader.readLine()) != null) {
+            	    error.append(line);
+            	}
+
+            	throw new RuntimeException(
+            	    "HTTP " + responseCode +
+            	    "\nURL: " + apiUrl +
+            	    "\nBODY: " + error
+            	);
             }
 
             con.disconnect();
