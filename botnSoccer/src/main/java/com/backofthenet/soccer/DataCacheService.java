@@ -73,8 +73,7 @@ public class DataCacheService {
     }
 
     private List<Map<String, Object>> fetchLeagues() {
-        // String[] competitionCodes = {"CL","PL","BL1","PD","SA","FL1","DED","PPL","BSA","WC"};
-        String[] competitionCodes = {"PL"};
+        String[] competitionCodes = {"CL","PL","BL1","PD","SA","FL1","DED","PPL","BSA","WC"};
         List<Map<String, Object>> leagues = new ArrayList<>();
         for (String code : competitionCodes) {
             try {
