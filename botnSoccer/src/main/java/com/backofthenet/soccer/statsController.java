@@ -21,7 +21,10 @@ public class statsController {
 
     @GetMapping("/stats")
     public String getLeagueScorers(@RequestParam(defaultValue = "PL") String league, Model model) {
-        String apiUrl = "https://api.football-data.org/v4/competitions/" + league + "/scorers";
+    	int season = java.time.Year.now().getValue() - 1;
+
+    	String apiUrl = "https://api.football-data.org/v4/competitions/" 
+    	        + league + "/scorers?season=" + season;
 
         Object cachedData = getCachedData(apiUrl);
         if (cachedData != null) {

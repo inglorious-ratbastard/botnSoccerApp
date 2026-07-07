@@ -20,7 +20,6 @@
 
     <div class="uk-flex uk-flex-center uk-margin uk-margin-xsmall-top uk-child-width-1-3">
       <select id="leagues" name="leagues" class="uk-select uk-text-bold">
-        <option value="" disabled selected>Choose a league to view its Top Scorers</option>
         <option value="PL" th:selected="${leagueCode == 'PL'}">Premier League</option>
         <option value="BL1" th:selected="${leagueCode == 'BL1'}">Bundesliga</option>
         <option value="PD" th:selected="${leagueCode == 'PD'}">Primera Division</option>
@@ -86,18 +85,21 @@
 <div th:insert="~{fragments/footer}"></div>
 
 <script>
-  document.addEventListener('DOMContentLoaded', function () {
-    const selectElement = document.getElementById('leagues');
+document.addEventListener("DOMContentLoaded", function () {
+
+    const selectElement = document.getElementById("leagues");
 
     if (selectElement) {
-      selectElement.addEventListener('change', function () {
-        const leagueCode = this.value;
-        if (leagueCode) {
-          window.location.href = `/stats?league=${leagueCode}`;
+        if (!window.location.search.includes("league")) {
+            window.location.href = "/stats?league=" + selectElement.value;
         }
-      });
+
+        selectElement.addEventListener("change", function () {
+            window.location.href = "/stats?league=" + this.value;
+        });
     }
-  });
+
+});
   
   function refreshMainContent() {
 	    fetch(window.location.href, { headers: { "X-Requested-With": "XMLHttpRequest" } })
