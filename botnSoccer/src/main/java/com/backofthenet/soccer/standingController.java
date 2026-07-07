@@ -48,7 +48,7 @@ public class standingController {
     @SuppressWarnings("unchecked")
 	@GetMapping("/uclstandings")
     @ResponseBody
-    public List<Map<String, Object>> getUclStandings(@RequestParam String filter) {
+    public List<Map<String, Object>> getUclStandings(@RequestParam(defaultValue = "ALL")  String filter) {
         String cacheKey = "uclstandings_" + filter.toUpperCase();
 
         if (isCacheValid(cacheKey)) {
