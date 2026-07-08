@@ -32,48 +32,44 @@
 
   .soccer-ball {
     position: absolute;
-    width: 30px;
-    height: 30px;
+    width: 28px;
+    height: 28px;
+    left: 50%;
+    top: 50%;
     background-image: url('https://upload.wikimedia.org/wikipedia/commons/d/d3/Soccerball.svg');
     background-size: cover;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) scale(0);
-    transition: transform 0.2s ease-in-out;
+    background-repeat: no-repeat;
+
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(.6);
+
     pointer-events: none;
   }
 
   .uk-card:hover .soccer-ball {
-    transform: translate(-50%, -50%) scale(1);
-    animation: moveBall 2.5s ease-in-out infinite;
+    animation: kickBall .8s ease-out forwards;
   }
 
-  @keyframes moveBall {
+  @keyframes kickBall {
+
     0% {
-      top: 10%;
-      left: 10%;
-      transform: translate(-50%, -50%) rotate(0deg);
+        left: 50%;
+        top: 50%;
+        opacity: 1;
+        transform: translate(-50%, -50%) rotate(0deg) scale(.7);
     }
-    25% {
-      top: 80%;
-      left: 20%;
-      transform: translate(-50%, -50%) rotate(90deg);
+
+    20% {
+        opacity: 1;
     }
-    50% {
-      top: 70%;
-      left: 80%;
-      transform: translate(-50%, -50%) rotate(180deg);
-    }
-    75% {
-      top: 20%;
-      left: 70%;
-      transform: translate(-50%, -50%) rotate(270deg);
-    }
-    100% {
-      top: 10%;
-      left: 10%;
-      transform: translate(-50%, -50%) rotate(360deg);
-    }
+
+    100%{
+    left: var(--endX);
+    top: var(--endY);
+    opacity:0;
+    transform:translate(-50%,-50%) rotate(900deg) scale(.9);
+}
+
   }
 </style>
 	
@@ -174,15 +170,24 @@
 <div th:insert="~{fragments/footer}"></div> 
 
 <script> 
-    document.querySelectorAll('.uk-card').forEach(card => {
-      card.addEventListener('mouseenter', () => {
-        const ball = card.querySelector('.soccer-ball');
-        if (ball) {
-          const randomDelay = Math.random() * 1; // 0–1s random start
-          ball.style.animationDelay = `${randomDelay}s`;
-        }
-      });
+document.querySelectorAll(".uk-card").forEach(card => {
+
+    card.addEventListener("mouseenter", () => {
+
+        const ball = card.querySelector(".soccer-ball");
+
+        const x = Math.random() > .5 ? "92%" : "8%";
+        const y = Math.random() > .5 ? "88%" : "12%";
+
+        ball.style.setProperty("--endX", x);
+        ball.style.setProperty("--endY", y);
+
+        ball.style.animation = "none";
+        ball.offsetHeight;
+        ball.style.animation = "kickBall .75s ease-out forwards";
     });
+
+});
   </script>
 
 </body>
